@@ -1,0 +1,19 @@
+﻿<Window x:Class="SequenceAnalyser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SequenceAnalyser"
+        mc:Ignorable="d"
+        Title="SequenceAnalyser" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="chooseFileBtn" Grid.Row="0" Content="Выбрать файл" Margin="10" MinWidth="200" MinHeight="25" MaxWidth="200" MaxHeight="25" Click="ChooseFileBtn_Click"/>
+        <TextBlock x:Name="resultDataTextBox" Grid.Row="1" Margin="20" TextWrapping="WrapWithOverflow" Text="Выберите файл"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Margin="10">
+        </Border>
+    </Grid>
+</Window>
