@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using SequenceAnalyser.SequenceAnalysing;
 
@@ -38,13 +29,13 @@ namespace SequenceAnalyser
             {
                 resultDataTextBox.Text = "Обработка данных...";
 
-                AnalyzeSequenceFromFileAsync(openFileDialog.FileName);
+                AnalyzeFileAsync(openFileDialog.FileName);
             }
         }
 
-        private async void AnalyzeSequenceFromFileAsync(string path)
+        private async void AnalyzeFileAsync(string path)
         {
-            DateTime startDateTime = DateTime.Now;
+            Stopwatch stopWatch = Stopwatch.StartNew();
 
             SequenceData sequenceData = await Task.Run(()=>AnalyzeSequenceFromFile(path));
 
@@ -55,9 +46,14 @@ namespace SequenceAnalyser
                 return;
             }
 
+            stopWatch.Stop();
+            TimeSpan timeSpan = stopWatch.Elapsed;
+
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds, timeSpan.Milliseconds / 10);
+
             StringBuilder resultData = new StringBuilder();
 
-            resultData.Append("[Начало: " + startDateTime + " --- Конец: " + DateTime.Now + "]");
+            resultData.Append("[Время выполнения: " + elapsedTime + "]");
             resultData.Append("\n\nМинимальное значение: " + sequenceData.minValue);
             resultData.Append("\n\nМаксимальное значение: " + sequenceData.maxValue);
             resultData.Append("\n\nСреднее арифметическое: " + sequenceData.average);
