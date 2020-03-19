@@ -19,8 +19,7 @@ namespace SequenceAnalyser
         }
 
         private void ChooseFileBtn_Click(object sender, RoutedEventArgs e)
-        {
-            
+        { 
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             openFileDialog.Filter = "txt files (*.txt)|*.txt";
@@ -29,12 +28,14 @@ namespace SequenceAnalyser
             {
                 resultDataTextBox.Text = "Обработка данных...";
 
-                AnalyzeFileAsync(openFileDialog.FileName);
+                AnalyzeSequenceAsync(openFileDialog.FileName);
             }
         }
 
-        private async void AnalyzeFileAsync(string path)
+        private async void AnalyzeSequenceAsync(string path)
         {
+            chooseFileBtn.IsEnabled = false;
+
             Stopwatch stopWatch = Stopwatch.StartNew();
 
             SequenceData sequenceData = await Task.Run(()=>AnalyzeSequenceFromFile(path));
@@ -62,6 +63,8 @@ namespace SequenceAnalyser
             resultData.Append("\n\nМаксимальная последовательность, которая уменьшается (" + sequenceData.maxDecreasingSequence.Count + "): " + String.Join(", ", sequenceData.maxDecreasingSequence));
 
             resultDataTextBox.Text = resultData.ToString();
+
+            chooseFileBtn.IsEnabled = true;
         }
 
         private SequenceData AnalyzeSequenceFromFile(string path)
