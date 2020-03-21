@@ -12,8 +12,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button x:Name="chooseFileBtn" Grid.Row="0" Content="Выбрать файл" Margin="10" MinWidth="200" MinHeight="25" MaxWidth="200" MaxHeight="25" Click="ChooseFileBtn_Click"/>
-        <TextBlock x:Name="resultDataTextBox" Grid.Row="1" Margin="20" TextWrapping="WrapWithOverflow" Text="Выберите файл"/>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Margin="10">
-        </Border>
+        <TextBox x:Name="resultDataTextBox" Grid.Row="1" Margin="20" TextWrapping="WrapWithOverflow" Text="Выберите файл" IsReadOnly="True"/>
     </Grid>
 </Window>

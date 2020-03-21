@@ -69,6 +69,7 @@ namespace SequenceAnalyser
 
         private SequenceData AnalyzeSequenceFromFile(string path)
         {
+            List<int>
             return Sequence.AnalyzeSequence(SequenceLoader.LoadFromTextFile(path));
         }
     }

@@ -14,19 +14,9 @@ namespace SequenceAnalyser.SequenceAnalysing
         //Медиана
         public float median;
         //Максимальная последовательность идущих подряд чисел, которая увеличивается
-        public List<int> maxIncreasingSequence;
+        public List<int> maxIncreasingSequence = new List<int>();
         //Максимальная последовательность идущих подряд чисел, которая уменьшается
-        public List<int> maxDecreasingSequence;
-
-        public SequenceData()
-        {
-            this.minValue = 0;
-            this.maxValue = 0;
-            this.average = 0;
-            this.median = 0;
-            this.maxIncreasingSequence = new List<int>();
-            this.maxDecreasingSequence = new List<int>();
-        }
+        public List<int> maxDecreasingSequence = new List<int>();
 
         public SequenceData(int minValue, int maxValue, float average, float median, List<int> maxIncreasingSequence, List<int> maxDecreasingSequence)
         {
