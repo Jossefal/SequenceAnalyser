@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace SequenceAnalyser.SequenceAnalysing
 {
@@ -13,27 +12,15 @@ namespace SequenceAnalyser.SequenceAnalysing
             if (!File.Exists(path))
                 return null;
 
-            StreamReader sr = null;
             List<int> sequence = new List<int>();
 
-            try
+            using (StreamReader sr = new StreamReader(path))
             {
-                sr = new StreamReader(path);
-
                 while (sr.Peek() != -1)
                 {
                     sequence.Add(Convert.ToInt32(sr.ReadLine()));
                 }
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-            finally
-            {
-                if (sr != null)
-                    sr.Close();
-            }
+            }                
 
             return sequence;
         }

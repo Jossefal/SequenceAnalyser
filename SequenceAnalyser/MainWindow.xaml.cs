@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -44,6 +45,7 @@ namespace SequenceAnalyser
             {
                 MessageBox.Show("Пустая последовательность");
                 resultDataTextBox.Text = "Выберите файл";
+                chooseFileBtn.IsEnabled = true;
                 return;
             }
 
@@ -69,8 +71,19 @@ namespace SequenceAnalyser
 
         private SequenceData AnalyzeSequenceFromFile(string path)
         {
-            List<int>
-            return Sequence.AnalyzeSequence(SequenceLoader.LoadFromTextFile(path));
+            List<int> sequence;
+
+            try
+            {
+                sequence = SequenceLoader.LoadFromTextFile(path);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return null;
+            }
+
+            return Sequence.AnalyzeSequence(sequence);
         }
     }
 }
